@@ -1,22 +1,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TopoGame : MonoBehaviour
 {
     [SerializeField]
     private List<Province> provinces;
 
+    [SerializeField]
+    private string nextScene;
+
     private void Start()
     {
         NextProvince();
     }
 
-    private void NextProvince()
+    public void NextProvince()
     {
         List<Province> availableProvinces = provinces.Where(x => !x.gameObject.activeSelf).ToList();
-        Province province = availableProvinces[Random.Range(0, availableProvinces.Count-1)];
-        
-        province.gameObject.SetActive(true);
+        if (availableProvinces.Count > 0)
+        {
+            Province province = availableProvinces[Random.Range(0, availableProvinces.Count - 1)];
+            province.gameObject.SetActive(true);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextScene);
+        }
     }
 }
