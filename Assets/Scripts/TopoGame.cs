@@ -5,28 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class TopoGame : MonoBehaviour
 {
-    [SerializeField]
-    private List<Province> provinces;
+	[SerializeField]
+	private List<Area> areas;
 
-    [SerializeField]
-    private string nextScene;
+	[SerializeField]
+	private string nextScene;
 
-    private void Start()
-    {
-        NextProvince();
-    }
+	public List<Area> previousAreas;
 
-    public void NextProvince()
-    {
-        List<Province> availableProvinces = provinces.Where(x => !x.gameObject.activeSelf).ToList();
-        if (availableProvinces.Count > 0)
-        {
-            Province province = availableProvinces[Random.Range(0, availableProvinces.Count - 1)];
-            province.gameObject.SetActive(true);
-        }
-        else
-        {
-            SceneManager.LoadScene(nextScene);
-        }
-    }
+	private void Start()
+	{
+		NextArea();
+	}
+
+	public void NextArea()
+	{
+		List<Area> availableAreas = areas.Where(x => !x.gameObject.activeSelf).ToList();
+		if (availableAreas.Count > 0)
+		{
+			Area area = availableAreas[Random.Range(0, availableAreas.Count - 1)];
+			area.gameObject.SetActive(true);
+		}
+		else
+		{
+			SceneManager.LoadScene(nextScene);
+		}
+	}
 }
