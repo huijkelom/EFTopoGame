@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	private SpriteRenderer spriteRenderer;
 	private TextMeshPro text;
 
+	[NotNull]
 	[SerializeField]
 	private TopoGame topoGame;
 
@@ -56,6 +58,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		text.transform.position     = StartTransform.position;
 		text.transform.rotation     = Quaternion.identity;
 		text.transform.localScale   = Vector3.one;
+		text.color                  = startColor;
 		textRectTransform.sizeDelta = StartTransform.sizeDelta;
 		spriteRenderer.color        = startColor;
 
@@ -101,7 +104,6 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	{
 		if (spriteRenderer.color == startColor)
 		{
-			
 			topoGame.previousAreas.Add(this);
 			if (topoGame.previousAreas.Count > 1)
 				topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();

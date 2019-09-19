@@ -135,4 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a656c368048e919418ffdf26ef879d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingToMake: []
+  SettingToMake:
+  - Label: Kaart
+    Value: Netherlands
+    PossibleValues:
+    - Netherlands
+    - Europe
+    Default: Netherlands
