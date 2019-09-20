@@ -13,11 +13,12 @@ public class TopoGame : MonoBehaviour
 
 	public List<Area> previousAreas;
 
-	private void Start()
-	{
-		NextArea();
-	}
+	public Area currentTarget { get; private set; }
 
+	private void Start() => NextArea();
+
+	public void WrongAnswerHit() => currentTarget.Shake();
+	
 	public void NextArea()
 	{
 		List<Area> availableAreas = areas.Where(x => !x.gameObject.activeSelf).ToList();
@@ -25,6 +26,7 @@ public class TopoGame : MonoBehaviour
 		{
 			Area area = availableAreas[Random.Range(0, availableAreas.Count - 1)];
 			area.gameObject.SetActive(true);
+			currentTarget = area;
 		}
 		else
 		{

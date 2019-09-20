@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneSwitcher : MonoBehaviour
 {
 	[SerializeField]
+	private bool autoSwitch;
+	[SerializeField]
 	private List<MapScene> mapScenes;
 
 	public void SwitchScene(string sceneName) => SceneManager.LoadScene(sceneName);
@@ -16,5 +18,8 @@ public class SceneSwitcher : MonoBehaviour
 		SceneManager.LoadScene(mapScenes.First(x => x.map.Equals(map)).scene);
 	}
 
-	private void OnEnable() => SwitchScene();
+	private void OnEnable()
+	{
+		if (autoSwitch) SwitchScene();
+	}
 }

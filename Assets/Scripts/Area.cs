@@ -13,7 +13,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	private Vector2 targetSize;
 
-	private PolygonCollider2D collider;
+	private Collider2D collider;
 
 
 	[Header("Settings")]
@@ -32,13 +32,20 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	[SerializeField]
 	private TopoGame topoGame;
 
+	[SerializeField]
+	private AnimationCurve shakePattern;
+
+	private Coroutine runningCoroutine;
+
+	private bool hit;
+
 
 	private void Awake()
 	{
 		// References
 		text              = GetComponentInChildren<TextMeshPro>();
 		spriteRenderer    = GetComponent<SpriteRenderer>();
-		collider          = gameObject.GetComponent<PolygonCollider2D>();
+		collider          = gameObject.GetComponent<Collider2D>();
 		textRectTransform = text.rectTransform;
 
 		// setup
@@ -64,6 +71,44 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 		// Hide until needed
 		gameObject.SetActive(false);
+	}
+
+
+	public void Hit(Vector3 hitPosition)
+	{
+		if (!hit)
+		{
+			hit = true;
+			topoGame.previousAreas.Add(this);
+			if (topoGame.previousAreas.Count > 1)
+				topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
+			StartCoroutine(AnimatedMove(0.5f));
+		}
+		else
+		{
+			topoGame.WrongAnswerHit();
+		}
+	}
+
+	private void OnEnable() => Enter();
+
+	public void Enter()
+	{
+		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
+		runningCoroutine = StartCoroutine(TextEnter(.5f));
+	}
+
+	public void Leave()
+	{
+		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
+		runningCoroutine = StartCoroutine(TextLeave(.5f));
+	}
+
+	public void Shake()
+	{
+		if (hit) return;
+		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
+		runningCoroutine = StartCoroutine(TextShake(.5f));
 	}
 
 	private IEnumerator AnimatedMove(float duration)
@@ -97,23 +142,10 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		textRectTransform.sizeDelta  = targetSize;
 		spriteRenderer.color         = targetColor;
 
+		runningCoroutine = null;
+
 		topoGame.NextArea();
 	}
-
-	public void Hit(Vector3 hitPosition)
-	{
-		if (spriteRenderer.color == startColor)
-		{
-			topoGame.previousAreas.Add(this);
-			if (topoGame.previousAreas.Count > 1)
-				topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
-			StartCoroutine(AnimatedMove(0.5f));
-		}
-	}
-
-	private void OnEnable() => Enter();
-	public void Enter() => StartCoroutine(TextEnter(.5f));
-	public void Leave() => StartCoroutine(TextLeave(.5f));
 
 	private IEnumerator TextLeave(float duration)
 	{
@@ -135,6 +167,34 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
+
+		// Ensure final values
+		textRectTransform.position = endPos;
+		text.color                 = new Color(0, 0, 0, 0);
+
+		runningCoroutine = null;
+	}
+
+	private IEnumerator TextShake(float duration)
+	{
+		float elapsedTime = 0;
+
+		Vector3 startPos = textRectTransform.position;
+
+		float progress = 0;
+		while (progress < 1)
+		{
+			progress = elapsedTime / duration;
+
+			textRectTransform.position = startPos + new Vector3(shakePattern.Evaluate(progress), 0);
+
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+
+		textRectTransform.position = startPos;
+
+		runningCoroutine = null;
 	}
 
 	private IEnumerator TextEnter(float duration)
@@ -157,5 +217,11 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
+
+		// Ensure final values
+		textRectTransform.position = endPos;
+		text.color                 = color;
+
+		runningCoroutine = null;
 	}
 }
