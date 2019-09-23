@@ -15,12 +15,10 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	private Collider2D collider;
 
-
 	[Header("Settings")]
 	[SerializeField]
 	private Color startColor;
 	private Color targetColor;
-
 
 	[Header("References")]
 	[SerializeField]
@@ -28,7 +26,6 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	private SpriteRenderer spriteRenderer;
 	private TextMeshPro text;
 
-	[NotNull]
 	[SerializeField]
 	private TopoGame topoGame;
 
@@ -72,7 +69,6 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		// Hide until needed
 		gameObject.SetActive(false);
 	}
-
 
 	public void Hit(Vector3 hitPosition)
 	{
