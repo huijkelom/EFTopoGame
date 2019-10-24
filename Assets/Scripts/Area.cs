@@ -35,6 +35,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	private Coroutine runningCoroutine;
 
 	private bool hit;
+	public bool Ready;
 
 
 	private void Awake()
@@ -72,7 +73,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	public void Hit(Vector3 hitPosition)
 	{
-		if (!hit)
+		if (!hit && Ready)
 		{
 			hit = true;
 			topoGame.previousAreas.Add(this);
@@ -200,7 +201,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		Vector3 startPos = textRectTransform.position + Vector3.right;
 		Vector3 endPos   = textRectTransform.position;
 
-		Color color = text.color;
+		Color color = startColor;
 
 		float progress = 0;
 		while (progress < 1)
@@ -216,8 +217,9 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 		// Ensure final values
 		textRectTransform.position = endPos;
-		text.color                 = color;
+		text.color                 = startColor;
 
 		runningCoroutine = null;
+		Ready            = true;
 	}
 }

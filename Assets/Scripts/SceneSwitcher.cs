@@ -10,6 +10,7 @@ public class SceneSwitcher : MonoBehaviour
 	[SerializeField]
 	private List<MapScene> mapScenes;
 
+	public void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	public void SwitchScene(string sceneName) => SceneManager.LoadScene(sceneName);
 
 	public void SwitchScene()

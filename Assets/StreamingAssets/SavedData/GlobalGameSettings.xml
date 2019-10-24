@@ -2,11 +2,11 @@
 <ArrayOfGlobalGameSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <GlobalGameSetting>
     <Label>Kaart</Label>
-    <Value>Netherlands</Value>
+    <Value>NL</Value>
     <PossibleValues>
-      <string>Netherlands</string>
-      <string>Europe</string>
+      <string>NL</string>
+      <string>EU</string>
     </PossibleValues>
-    <Default>Netherlands</Default>
+    <Default>NL</Default>
   </GlobalGameSetting>
 </ArrayOfGlobalGameSetting>

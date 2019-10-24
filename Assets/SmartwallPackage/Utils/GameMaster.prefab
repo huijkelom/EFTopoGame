@@ -137,8 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingToMake:
   - Label: Kaart
-    Value: Netherlands
+    Value: EU
     PossibleValues:
-    - Netherlands
-    - Europe
-    Default: Netherlands
+    - NL
+    - EU
+    Default: NL

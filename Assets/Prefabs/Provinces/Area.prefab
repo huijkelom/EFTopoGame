@@ -372,6 +372,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  Ready: 0
 --- !u!60 &7553250518349559952
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class TopoGame : MonoBehaviour
@@ -14,6 +15,9 @@ public class TopoGame : MonoBehaviour
 	public List<Area> previousAreas;
 
 	public Area currentTarget { get; private set; }
+
+	public UnityEvent DoneEvent = new UnityEvent();
+	
 
 	private void Start() => NextArea();
 
@@ -30,7 +34,7 @@ public class TopoGame : MonoBehaviour
 		}
 		else
 		{
-			SceneManager.LoadScene(nextScene);
+			DoneEvent.Invoke();
 		}
 	}
 }
