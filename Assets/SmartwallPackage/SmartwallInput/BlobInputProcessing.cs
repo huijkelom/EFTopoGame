@@ -33,7 +33,7 @@ public class BlobInputProcessing : MonoBehaviour
     private Dictionary<Vector2,bool> _InteractedPoints = new Dictionary<Vector2, bool>();
 
     //Every frame we check for blob and mouse input
-    private void FixedUpdate()
+    private void Update()
     {
         List<Vector2> temp = _InteractedPoints.Keys.ToList();
         for(int i = 0; i<temp.Count;i++)

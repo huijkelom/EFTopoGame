@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingToMake:
-  - Label: Kaart
+  - Label: Map
     Value: EU
     PossibleValues:
     - NL

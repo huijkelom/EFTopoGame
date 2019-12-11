@@ -15,7 +15,7 @@ public class SceneSwitcher : MonoBehaviour
 
 	public void SwitchScene()
 	{
-		string map = GlobalGameSettings.GetSetting("Kaart");
+		string map = GlobalGameSettings.GetSetting("Map");
 		SceneManager.LoadScene(mapScenes.First(x => x.map.Equals(map)).scene);
 	}
 
