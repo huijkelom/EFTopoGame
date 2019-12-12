@@ -83,7 +83,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		}
 		else
 		{
-			topoGame.WrongAnswerHit();
+			topoGame.WrongAnswerHit(hitPosition);
 		}
 	}
 
