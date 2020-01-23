@@ -7,20 +7,20 @@ using UnityEngine.Events;
 public class TopoGame : MonoBehaviour
 {
 	[SerializeField]
-	private List<Area> areas;
+	private List<Area> areas = default;
 
 	[SerializeField]
-	private string nextScene;
+	private string nextScene = default;
 
 	[SerializeField]
-	private GameTimer timer;
+	private GameTimer timer = default;
 	[SerializeField]
-	private TextMeshProUGUI scoreText;
+	private TextMeshProUGUI scoreText = default;
 
 	[SerializeField]
-	private HitMarker hitMarker;
+	private HitMarker hitMarker = default;
 
-	public List<Area> previousAreas;
+	public List<Area> previousAreas = default;
 
 	public Area currentTarget { get; private set; }
 
@@ -29,7 +29,7 @@ public class TopoGame : MonoBehaviour
 	[SerializeField]
 	private int score = 0;
 	[SerializeField]
-	private float totalTime;
+	private float totalTime = default;
 
 	private void Start() => NextArea();
 
@@ -59,6 +59,8 @@ public class TopoGame : MonoBehaviour
 		{
 			timer.PauseTimer(true);
 			DoneEvent.Invoke();
+
+			ScoreScreenController.MoveToScores(new List<int> {score});
 		}
 	}
 }

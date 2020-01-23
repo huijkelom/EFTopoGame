@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class Area : MonoBehaviour, I_SmartwallInteractable
 {
-	private RectTransform textRectTransform;
+	private RectTransform _textRectTransform;
 
-	private Vector3 targetPosition;
-	private Quaternion targetRotation;
-	private Vector3 targetScale;
+	private Vector3 _targetPosition;
+	private Quaternion _targetRotation;
+	private Vector3 _targetScale;
 
-	private Vector2 targetSize;
+	private Vector2 _targetSize;
 
-	private Collider2D collider;
+	private Collider2D _collider;
 
 	[Header("Settings")]
 	[SerializeField]
 	private Color startColor;
-	private Color targetColor;
+	private Color _targetColor;
 
 	[Header("References")]
 	[SerializeField]
-	private RectTransform StartTransform;
-	private SpriteRenderer spriteRenderer;
-	private TextMeshPro text;
+	private RectTransform startTransform;
+	private SpriteRenderer _spriteRenderer;
+	private TextMeshPro _text;
 
 	[SerializeField]
 	private TopoGame topoGame;
@@ -32,40 +32,40 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	[SerializeField]
 	private AnimationCurve shakePattern;
 
-	private Coroutine runningCoroutine;
+	private Coroutine _runningCoroutine;
 
-	private bool hit;
-	public bool Ready;
-
+	private bool _hit;
+	public bool ready = false;
 
 	private void Awake()
 	{
 		// References
-		text              = GetComponentInChildren<TextMeshPro>();
-		spriteRenderer    = GetComponent<SpriteRenderer>();
-		collider          = gameObject.GetComponent<Collider2D>();
-		textRectTransform = text.rectTransform;
+		_text              = GetComponentInChildren<TextMeshPro>();
+		_spriteRenderer    = GetComponent<SpriteRenderer>();
+		_collider          = gameObject.GetComponent<Collider2D>();
+		_textRectTransform = _text.rectTransform;
 
 		// setup
-		text.text                   = name;
-		text.sortingOrder           = 2;
-		textRectTransform.sizeDelta = new Vector2(collider.bounds.size.x, .3f);
-		textRectTransform.position  = collider.bounds.center;
+		_text.text         = name;
+		_text.sortingOrder = 2;
+		var bounds = _collider.bounds;
+		_textRectTransform.sizeDelta = new Vector2(bounds.size.x, .3f);
+		_textRectTransform.position  = bounds.center;
 
 		// save target values
-		targetPosition = textRectTransform.position;
-		targetRotation = textRectTransform.rotation;
-		targetScale    = textRectTransform.localScale;
-		targetSize     = textRectTransform.sizeDelta;
-		targetColor    = spriteRenderer.color;
+		_targetPosition = _textRectTransform.position;
+		_targetRotation = _textRectTransform.rotation;
+		_targetScale    = _textRectTransform.localScale;
+		_targetSize     = _textRectTransform.sizeDelta;
+		_targetColor    = _spriteRenderer.color;
 
 		// set start values
-		text.transform.position     = StartTransform.position;
-		text.transform.rotation     = Quaternion.identity;
-		text.transform.localScale   = Vector3.one;
-		text.color                  = startColor;
-		textRectTransform.sizeDelta = StartTransform.sizeDelta;
-		spriteRenderer.color        = startColor;
+		_text.transform.position     = startTransform.position;
+		_text.transform.rotation     = Quaternion.identity;
+		_text.transform.localScale   = Vector3.one;
+		_text.color                  = startColor;
+		_textRectTransform.sizeDelta = startTransform.sizeDelta;
+		_spriteRenderer.color        = startColor;
 
 		// Hide until needed
 		gameObject.SetActive(false);
@@ -73,12 +73,14 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	public void Hit(Vector3 hitPosition)
 	{
-		if (!hit && Ready)
+		if (!_hit && ready)
 		{
-			hit = true;
+			_hit = true;
 			topoGame.previousAreas.Add(this);
 			if (topoGame.previousAreas.Count > 1)
 				topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
+
+			if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
 			StartCoroutine(AnimatedMove(0.5f));
 		}
 		else
@@ -91,55 +93,52 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	public void Enter()
 	{
-		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
-		runningCoroutine = StartCoroutine(TextEnter(.5f));
+		if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
+		_runningCoroutine = StartCoroutine(TextEnter(.5f));
 	}
 
 	public void Leave()
 	{
-		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
-		runningCoroutine = StartCoroutine(TextLeave(.5f));
+		if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
+		_runningCoroutine = StartCoroutine(TextLeave(.5f));
 	}
 
 	public void Shake()
 	{
-		if (hit) return;
-		if (runningCoroutine != null) StopCoroutine(runningCoroutine);
-		runningCoroutine = StartCoroutine(TextShake(.5f));
+		if (_hit || _runningCoroutine != null) return;
+		_runningCoroutine = StartCoroutine(TextShake(.5f));
 	}
 
 	private IEnumerator AnimatedMove(float duration)
 	{
 		float elapsedTime = 0;
 
-		Vector3    startPos   = textRectTransform.position + Vector3.back;
-		Quaternion startRot   = textRectTransform.rotation;
-		Vector3    startScale = textRectTransform.localScale;
-		Vector2    startSize  = textRectTransform.sizeDelta;
+		Vector3    startPos   = _textRectTransform.position + Vector3.back;
+		Quaternion startRot   = _textRectTransform.rotation;
+		Vector3    startScale = _textRectTransform.localScale;
+		Vector2    startSize  = _textRectTransform.sizeDelta;
 
-		float progress = 0;
-		while (progress < 1)
+		for (float elapsed = 0; elapsed < duration; elapsed += Time.deltaTime)
 		{
-			progress = elapsedTime / duration;
-
-			textRectTransform.position   = Vector3.Lerp(startPos, targetPosition, progress);
-			textRectTransform.rotation   = Quaternion.Lerp(startRot, targetRotation, progress);
-			textRectTransform.localScale = Vector3.Lerp(startScale, targetScale, progress);
-			textRectTransform.sizeDelta  = Vector2.Lerp(startSize, targetSize, progress);
-			spriteRenderer.color         = Color.Lerp(startColor, targetColor, progress);
+			float progress = elapsedTime / duration;
+			_textRectTransform.position   = Vector3.Lerp(startPos, _targetPosition, progress);
+			_textRectTransform.rotation   = Quaternion.Lerp(startRot, _targetRotation, progress);
+			_textRectTransform.localScale = Vector3.Lerp(startScale, _targetScale, progress);
+			_textRectTransform.sizeDelta  = Vector2.Lerp(startSize, _targetSize, progress);
+			_spriteRenderer.color         = Color.Lerp(startColor, _targetColor, progress);
 
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
 
 		// Ensure final values
-		textRectTransform.position   = targetPosition;
-		textRectTransform.rotation   = targetRotation;
-		textRectTransform.localScale = targetScale;
-		textRectTransform.sizeDelta  = targetSize;
-		spriteRenderer.color         = targetColor;
+		_textRectTransform.position   = _targetPosition;
+		_textRectTransform.rotation   = _targetRotation;
+		_textRectTransform.localScale = _targetScale;
+		_textRectTransform.sizeDelta  = _targetSize;
+		_spriteRenderer.color         = _targetColor;
 
-		runningCoroutine = null;
+		_runningCoroutine = null;
 
 		topoGame.NextArea();
 	}
@@ -148,58 +147,59 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	{
 		float elapsedTime = 0;
 
-		Vector3 startPos = textRectTransform.position;
+		Vector3 startPos = _textRectTransform.position;
 		Vector3 endPos   = startPos + Vector3.right;
 
-		Color color = text.color;
+		Color color = _text.color;
 
 		float progress = 0;
 		while (progress < 1)
 		{
 			progress = elapsedTime / duration;
 
-			textRectTransform.position = Vector3.Lerp(startPos, endPos, progress);
-			text.color                 = Color.Lerp(color, new Color(0, 0, 0, 0), progress);
+			_textRectTransform.position = Vector3.Lerp(startPos, endPos, progress);
+			_text.color                 = Color.Lerp(color, new Color(0, 0, 0, 0), progress);
 
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
 
 		// Ensure final values
-		textRectTransform.position = endPos;
-		text.color                 = new Color(0, 0, 0, 0);
+		_textRectTransform.position = endPos;
+		_text.color                 = new Color(0, 0, 0, 0);
 
-		runningCoroutine = null;
+		_runningCoroutine = null;
 	}
 
 	private IEnumerator TextShake(float duration)
 	{
 		float elapsedTime = 0;
 
-		Vector3 startPos = textRectTransform.position;
+		Vector3 startPos = _textRectTransform.position;
 
 		float progress = 0;
 		while (progress < 1)
 		{
 			progress = elapsedTime / duration;
 
-			textRectTransform.position = startPos + new Vector3(shakePattern.Evaluate(progress), 0);
+			_textRectTransform.position = startPos + new Vector3(shakePattern.Evaluate(progress), 0);
 
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
 
-		textRectTransform.position = startPos;
+		_textRectTransform.position = startPos;
 
-		runningCoroutine = null;
+		_runningCoroutine = null;
 	}
 
 	private IEnumerator TextEnter(float duration)
 	{
 		float elapsedTime = 0;
 
-		Vector3 startPos = textRectTransform.position + Vector3.right;
-		Vector3 endPos   = textRectTransform.position;
+		var     position = _textRectTransform.position;
+		Vector3 startPos = position + Vector3.right;
+		Vector3 endPos   = position;
 
 		Color color = startColor;
 
@@ -208,18 +208,18 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		{
 			progress = elapsedTime / duration;
 
-			textRectTransform.position = Vector3.Lerp(startPos, endPos, progress);
-			text.color                 = Color.Lerp(new Color(0, 0, 0, 0), color, progress);
+			_textRectTransform.position = Vector3.Lerp(startPos, endPos, progress);
+			_text.color                 = Color.Lerp(new Color(0, 0, 0, 0), color, progress);
 
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
 
 		// Ensure final values
-		textRectTransform.position = endPos;
-		text.color                 = startColor;
+		_textRectTransform.position = endPos;
+		_text.color                 = startColor;
 
-		runningCoroutine = null;
-		Ready            = true;
+		_runningCoroutine = null;
+		ready             = true;
 	}
 }

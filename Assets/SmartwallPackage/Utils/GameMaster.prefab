@@ -137,8 +137,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingToMake:
   - Label: Map
-    Value: NL
+    Value: EU
     PossibleValues:
     - NL
     - EU
     Default: NL
+  - Label: Reset HS
+    Value: No
+    PossibleValues:
+    - Yes
+    - No
+    Default: No
