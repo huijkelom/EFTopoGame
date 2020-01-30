@@ -13,7 +13,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	private Vector2 _targetSize;
 
-	private Collider2D _collider;
+	public Collider2D HitCollider { get; private set; }
 
 	[Header("Settings")]
 	[SerializeField]
@@ -42,13 +42,13 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		// References
 		_text              = GetComponentInChildren<TextMeshPro>();
 		_spriteRenderer    = GetComponent<SpriteRenderer>();
-		_collider          = gameObject.GetComponent<Collider2D>();
+		HitCollider        = gameObject.GetComponent<Collider2D>();
 		_textRectTransform = _text.rectTransform;
 
 		// setup
 		_text.text         = name;
 		_text.sortingOrder = 2;
-		var bounds = _collider.bounds;
+		var bounds = HitCollider.bounds;
 		_textRectTransform.sizeDelta = new Vector2(bounds.size.x, .3f);
 		_textRectTransform.position  = bounds.center;
 
@@ -68,7 +68,8 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		_spriteRenderer.color        = startColor;
 
 		// Hide until needed
-		gameObject.SetActive(false);
+		HitCollider.enabled = false;
+		_textRectTransform.gameObject.SetActive(false);
 	}
 
 	public void Hit(Vector3 hitPosition)
@@ -221,5 +222,11 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 		_runningCoroutine = null;
 		ready             = true;
+	}
+
+	public void Activate()
+	{
+		_textRectTransform.gameObject.SetActive(true);
+		HitCollider.enabled = true;
 	}
 }

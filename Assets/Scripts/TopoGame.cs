@@ -10,9 +10,6 @@ public class TopoGame : MonoBehaviour
 	private List<Area> areas = default;
 
 	[SerializeField]
-	private string nextScene = default;
-
-	[SerializeField]
 	private GameTimer timer = default;
 	[SerializeField]
 	private TextMeshProUGUI scoreText = default;
@@ -28,8 +25,6 @@ public class TopoGame : MonoBehaviour
 
 	[SerializeField]
 	private int score = 0;
-	[SerializeField]
-	private float totalTime = default;
 
 	private void Start() => NextArea();
 
@@ -41,18 +36,17 @@ public class TopoGame : MonoBehaviour
 
 	public void NextArea()
 	{
-		totalTime      += timer.timeLimit - timer.RemainingTime;
 		score          += (int) timer.RemainingTime;
 		scoreText.text =  $"{score.ToString()} Pts.";
 
-		List<Area> availableAreas = areas.Where(x => !x.gameObject.activeSelf).ToList();
+		List<Area> availableAreas = areas.Where(x => !x.HitCollider.enabled).ToList();
 		if (availableAreas.Count > 0)
 		{
 			timer.SetTime(15);
 			timer.StartTimer();
 
 			Area area = availableAreas[Random.Range(0, availableAreas.Count - 1)];
-			area.gameObject.SetActive(true);
+			area.Activate();
 			currentTarget = area;
 		}
 		else
