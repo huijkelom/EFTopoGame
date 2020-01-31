@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class TopoGame : MonoBehaviour
 {
@@ -26,7 +28,10 @@ public class TopoGame : MonoBehaviour
 	[SerializeField]
 	private int score = 0;
 
-	private void Start() => NextArea();
+	private void Start()
+	{
+		NextArea();
+	}
 
 	public void WrongAnswerHit(Vector3 position)
 	{
@@ -36,8 +41,9 @@ public class TopoGame : MonoBehaviour
 
 	public void NextArea()
 	{
-		score          += (int) timer.RemainingTime;
-		scoreText.text =  $"{score.ToString()} Pts.";
+		score += (int) timer.RemainingTime;
+		if (currentTarget) currentTarget.AppendText($"+{(int)timer.RemainingTime}");
+		scoreText.text = $"{score.ToString()} Pts.";
 
 		List<Area> availableAreas = areas.Where(x => !x.HitCollider.enabled).ToList();
 		if (availableAreas.Count > 0)
