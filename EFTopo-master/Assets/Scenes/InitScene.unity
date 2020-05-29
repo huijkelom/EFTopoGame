@@ -242,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
       propertyPath: SettingToMake.Array.data[0].Value
-      value: NL
+      value: EU
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -303,6 +303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580370671467913579, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: UninteractableAreaSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7580370671467913580, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
