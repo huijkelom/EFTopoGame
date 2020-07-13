@@ -129,7 +129,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589363910}
-  - component: {fileID: 589363909}
   m_Layer: 0
   m_Name: SceneSwitcher
   m_TagString: Untagged
@@ -137,24 +136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &589363909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589363908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d39e1efea73f44e9d1f545efbe48b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoSwitch: 1
-  mapScenes:
-  - map: NL
-    scene: NetherlandsScene
-  - map: EU
-    scene: EuropeScene
 --- !u!4 &589363910
 Transform:
   m_ObjectHideFlags: 0
@@ -169,6 +150,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &591291040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7580370671467913580, guid: d21d40e053a0ceb499904da364436a28,
+    type: 3}
+  m_PrefabInstance: {fileID: 1908898421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &591291049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591291040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d39e1efea73f44e9d1f545efbe48b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSwitch: 1
+  mapScenes:
+  - map: NL
+    scene: NetherlandsScene
+  - map: EU
+    scene: EuropeScene
 --- !u!1001 &1908898421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250,6 +255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HighscoreColour.b
       value: 0.13363297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Value
+      value: EU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d21d40e053a0ceb499904da364436a28, type: 3}

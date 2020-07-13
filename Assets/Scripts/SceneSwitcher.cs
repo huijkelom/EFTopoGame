@@ -19,7 +19,7 @@ public class SceneSwitcher : MonoBehaviour
 		SceneManager.LoadScene(mapScenes.First(x => x.map.Equals(map)).scene);
 	}
 
-	private void OnEnable()
+	private void Start()
 	{
 		if (autoSwitch) SwitchScene();
 	}

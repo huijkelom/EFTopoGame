@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class TopoGame : MonoBehaviour
 {
@@ -59,8 +60,9 @@ public class TopoGame : MonoBehaviour
 		{
 			timer.PauseTimer(true);
 			DoneEvent.Invoke();
-
-			ScoreScreenController.MoveToScores(new List<int> {score});
+            int y = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log(y);
+            ScoreScreenController.MoveToScores(new List<int> {score},y);
 		}
 	}
 }

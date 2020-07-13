@@ -242,8 +242,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8d26b26d8cc4ba94e9260e315ab47bb6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -273,6 +271,7 @@ GameObject:
   - component: {fileID: 678715372}
   - component: {fileID: 678715375}
   - component: {fileID: 678715374}
+  - component: {fileID: 678715378}
   - component: {fileID: 678715373}
   - component: {fileID: 678715376}
   - component: {fileID: 678715377}
@@ -348,8 +347,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1240361073}
-        m_MethodName: BT_Replay_Clicked
+      - m_Target: {fileID: 678715378}
+        m_MethodName: SwitchScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -370,8 +369,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &678715374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,8 +387,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 38834a1a939bd7145846a804b88abfb7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -422,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b955479aedc39d40921e5d6bcc4d50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationTriggerName: Clicked
 --- !u!61 &678715377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -448,6 +444,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 320, y: 180}
   m_EdgeRadius: 0
+--- !u!114 &678715378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678715371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d39e1efea73f44e9d1f545efbe48b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSwitch: 0
+  mapScenes:
+  - map: NL
+    scene: NetherlandsScene
+  - map: EU
+    scene: EuropeScene
 --- !u!1 &681828016
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,8 +600,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 004196826c4a11a4ba9f7b043233c196, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -661,8 +673,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: a6f3bd9f3f448a348aef1249631dfa6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -926,8 +936,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: f9287f48ff1173945b3e36671dad4bd4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
