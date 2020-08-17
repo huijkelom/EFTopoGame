@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
@@ -14,7 +15,7 @@ public class TopoGame : MonoBehaviour
 	[SerializeField]
 	private GameTimer timer = default;
 	[SerializeField]
-	private TextMeshProUGUI scoreText = default;
+	private TextMeshPro scoreText = default;
 
 	[SerializeField]
 	private HitMarker hitMarker = default;
@@ -60,7 +61,7 @@ public class TopoGame : MonoBehaviour
 			timer.PauseTimer(true);
 			DoneEvent.Invoke();
 
-			ScoreScreenController.MoveToScores(new List<int> {score});
+			ScoreScreenController.MoveToScores(new List<int> {score}, SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

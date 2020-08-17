@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-	public TextMeshProUGUI labelOfTimer;
+	public TextMesh labelOfTimer;
 	public Image gage;
 	/// <summary>
 	/// Time limit can be overwritten by the setting file if it contains a setting from Time.
@@ -47,7 +47,7 @@ public class GameTimer : MonoBehaviour
 		//Check if a Text class has been linked
 		if (labelOfTimer == null)
 		{
-			labelOfTimer = gameObject.GetComponent<TextMeshProUGUI>(); //Try to find a Text class
+			labelOfTimer = gameObject.GetComponentInChildren<TextMesh>(); //Try to find a Text class
 			if (labelOfTimer == null)
 			{
 				Debug.LogWarning(

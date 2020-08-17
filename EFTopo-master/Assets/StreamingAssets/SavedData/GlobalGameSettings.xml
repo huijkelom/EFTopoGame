@@ -2,21 +2,17 @@
 <ArrayOfGlobalGameSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <GlobalGameSetting>
     <Label>Map</Label>
-    <Value>EU</Value>
-    <PossibleValues>
-      <string>NL</string>
-      <string>EU</string>
-      <string>WRLD</string>
-    </PossibleValues>
-    <Default>NL</Default>
+    <Value>NL</Value>
+    <PossibleValues />
+    <Default>EU</Default>
   </GlobalGameSetting>
   <GlobalGameSetting>
     <Label>Reset HS</Label>
-    <Value>No</Value>
+    <Value>Yes</Value>
     <PossibleValues>
       <string>Yes</string>
       <string>No</string>
     </PossibleValues>
-    <Default>No</Default>
+    <Default>Yes</Default>
   </GlobalGameSetting>
 </ArrayOfGlobalGameSetting>
