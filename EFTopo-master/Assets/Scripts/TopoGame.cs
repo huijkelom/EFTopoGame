@@ -29,15 +29,21 @@ public class TopoGame : MonoBehaviour
 	[SerializeField]
 	private int score = 0;
 
-	private void Start()
+    public bool Playing = false;
+
+	public void StartGame()
 	{
 		NextArea();
+        Playing = true;
 	}
 
 	public void WrongAnswerHit(Vector3 position)
 	{
-		currentTarget.Shake();
-		hitMarker.Move(position);
+        if (Playing == true)
+        {
+            currentTarget.Shake();
+            hitMarker.Move(position);
+        }
 	}
 
 	public void NextArea()
@@ -61,7 +67,7 @@ public class TopoGame : MonoBehaviour
 			timer.PauseTimer(true);
 			DoneEvent.Invoke();
 
-			ScoreScreenController.MoveToScores(new List<int> {score}, SceneManager.GetActiveScene().buildIndex);
+			ScoreScreenController.MoveToScores(new List<int> {score}, SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

@@ -3,7 +3,11 @@
   <GlobalGameSetting>
     <Label>Map</Label>
     <Value>NL</Value>
-    <PossibleValues />
+    <PossibleValues>
+      <string>NL</string>
+      <string>EU</string>
+      <string>WRLD</string>
+    </PossibleValues>
     <Default>EU</Default>
   </GlobalGameSetting>
   <GlobalGameSetting>

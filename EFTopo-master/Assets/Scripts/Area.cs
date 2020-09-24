@@ -81,21 +81,24 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	public void Hit(Vector3 hitPosition)
 	{
-		if (!_hit && ready)
-		{
-			_hit = true;
-			_audioSource.PlayOneShot(goodSound);
-			topoGame.previousAreas.Add(this);
-			if (topoGame.previousAreas.Count > 1)
-				topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
+        if (topoGame.Playing == true)
+        {
+            if (!_hit && ready)
+            {
+                _hit = true;
+                _audioSource.PlayOneShot(goodSound);
+                topoGame.previousAreas.Add(this);
+                if (topoGame.previousAreas.Count > 1)
+                    topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
 
-			if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
-			StartCoroutine(AnimatedMove(0.5f));
-		}
-		else
-		{
-			topoGame.WrongAnswerHit(hitPosition);
-		}
+                if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
+                StartCoroutine(AnimatedMove(0.5f));
+            }
+            else
+            {
+                topoGame.WrongAnswerHit(hitPosition);
+            }
+        }
 	}
 
 	private void OnEnable() => Enter();
