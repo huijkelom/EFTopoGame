@@ -149,12 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d39e1efea73f44e9d1f545efbe48b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoSwitch: 1
-  mapScenes:
-  - map: NL
-    scene: NetherlandsScene
-  - map: EU
-    scene: EuropeScene
+  SceneIndex: 1
 --- !u!4 &589363910
 Transform:
   m_ObjectHideFlags: 0
@@ -250,6 +245,41 @@ PrefabInstance:
         type: 3}
       propertyPath: HighscoreColour.b
       value: 0.13363297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Label
+      value: PlayTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Value
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Default
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117388939419840, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d21d40e053a0ceb499904da364436a28, type: 3}

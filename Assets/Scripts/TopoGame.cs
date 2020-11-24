@@ -41,14 +41,14 @@ public class TopoGame : MonoBehaviour
 
 	public void NextArea()
 	{
-		score += (int) timer.RemainingTime;
-		if (currentTarget) currentTarget.AppendText($"+{(int)timer.RemainingTime}");
+		score += (int) timer.TimeRemaining;
+		if (currentTarget) currentTarget.AppendText($"+{(int)timer.TimeRemaining}");
 		scoreText.text = $"{score.ToString()} Pts.";
 
 		List<Area> availableAreas = areas.Where(x => !x.HitCollider.enabled).ToList();
 		if (availableAreas.Count > 0)
 		{
-			timer.SetTime(15);
+			timer.TimeRemaining = 15;
 			timer.StartTimer();
 
 			Area area = availableAreas[Random.Range(0, availableAreas.Count - 1)];

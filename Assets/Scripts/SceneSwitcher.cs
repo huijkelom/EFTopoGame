@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitcher : MonoBehaviour
+public class SceneSwitch : MonoBehaviour
 {
 	[SerializeField]
 	private bool autoSwitch;
