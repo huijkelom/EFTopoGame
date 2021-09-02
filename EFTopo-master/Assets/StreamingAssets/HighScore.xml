@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<HighscoreContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Highscores>
+    <int>0</int>
+    <int>0</int>
+    <int>467</int>
+  </Highscores>
+</HighscoreContainer>
