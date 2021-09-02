@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -149,7 +150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d39e1efea73f44e9d1f545efbe48b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneIndex: 1
+  autoSwitch: 1
+  mapScenes:
+  - map: NL
+    scene: NetherlandsScene
+  - map: EU
+    scene: EuropeScene
+  - map: WRLD
+    scene: WorldScene
 --- !u!4 &589363910
 Transform:
   m_ObjectHideFlags: 0
@@ -171,10 +179,120 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7580370671467913580, guid: d21d40e053a0ceb499904da364436a28,
+    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: m_Name
-      value: GameMaster
+      propertyPath: HighscoreColour.r
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: HighscoreColour.g
+      value: 0.13363297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: HighscoreColour.b
+      value: 0.13363297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[2]
+      value: WRLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].Label
+      value: Reset HS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].Value
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[0]
+      value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[1]
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].Default
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Value
+      value: WRLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Default
+      value: NL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Label
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[0]
+      value: NL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[1]
+      value: EU
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].Label
+      value: Reset HS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].Value
+      value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.data[0]
+      value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.data[1]
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].Default
+      value: Yes
       objectReference: {fileID: 0}
     - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -231,55 +349,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
+    - target: {fileID: 7580370671467913579, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: HighscoreColour.r
-      value: 0.8584906
+      propertyPath: UninteractableAreaSize
+      value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
+    - target: {fileID: 7580370671467913579, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: HighscoreColour.g
-      value: 0.13363297
-      objectReference: {fileID: 0}
-    - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: HighscoreColour.b
-      value: 0.13363297
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.size
+      propertyPath: AverageAllInputsToOnePoint
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+    - target: {fileID: 7580370671467913580, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.size
-      value: 1
+      propertyPath: m_Name
+      value: GameMaster
       objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].Label
-      value: PlayTime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].Value
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[0]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].Default
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114117388939419840, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114117388939419840, guid: d21d40e053a0ceb499904da364436a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d21d40e053a0ceb499904da364436a28, type: 3}

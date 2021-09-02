@@ -1,155 +1,121 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(AudioSource), typeof(Image))]
 public class GameTimer : MonoBehaviour
 {
-    [Tooltip("Time limit can be overwritten by the setting file if it contains a setting from Time.")]
-    public float TimeLimit;
-    public float TimeRemaining;
+	public TextMesh labelOfTimer;
+	public Image gage;
+	/// <summary>
+	/// Time limit can be overwritten by the setting file if it contains a setting from Time.
+	/// </summary>
+	public float timeLimit;
+	public Color colorWhenOutOfTime;
+	public float percentageOutOfTime = 15;
+	private float _startTime;
+	private Color _colourStart;
+	private bool _paused = false;
+	public UnityEvent timerRanOut = new UnityEvent();
+	private Coroutine _runningRoutine;
+	
+	public float RemainingTime { get; private set; }
 
-    [Space]
-    public Text LabelOfTimer;
-    public Image Gage;
+	/// <summary>
+	/// Start running the set timer.
+	/// </summary>
+	public void StartTimer()
+	{
+		_startTime         = Time.time;
+		labelOfTimer.color = _colourStart;
 
-    [Space][Tooltip("The amount of seconds when the timer needs to execute certain behaviours.")]
-    public int AlmostFinishedTime = 5;
-    public Color AlmostFinishedColor;
+		if (_runningRoutine != null) StopCoroutine(_runningRoutine);
+		_runningRoutine = StartCoroutine("RunTimer");
+	}
 
-    [Space]
-    public Image _FinishedFade;
-    public UnityEvent TimerRanOut = new UnityEvent();
+	/// <summary>
+	/// Pause or unpause the timer.
+	/// </summary>
+	public void PauseTimer(bool pause)
+	{
+		_paused = pause;
+	}
 
-    private AudioSource _AlmostFinishedAudio;
-    private AudioSource _FinishedAudio;
+	void Awake()
+	{
+		//Check if a Text class has been linked
+		if (labelOfTimer == null)
+		{
+			labelOfTimer = gameObject.GetComponentInChildren<TextMesh>(); //Try to find a Text class
+			if (labelOfTimer == null)
+			{
+				Debug.LogWarning(
+					"L_Text | Start | Text changer has no label to change and can't find one on its gameobject: " +
+					gameObject.name);
+				return;
+			}
+			else
+			{
+				Debug.LogWarning(
+					"L_Text | Start | Text changer has no label to change but it has found a Text class on its gameobject: " +
+					gameObject.name);
+			}
+		}
 
-    private float _StartTime;
-    private Color _ColourStart;
-    private bool Paused = false;
+		_colourStart = labelOfTimer.color;
+	}
 
-    public void SetState(bool state)
-    {
-        gameObject.SetActive(state);
-    }
+//	private void Start()
+//	{
+//		//load time setting from settings file, if there is not Time setting in the file the inspector value is used.
+//		string[] temp = GlobalGameSettings.GetSetting("Playtime").Split(' ');
+//		if (temp.Length > 0)
+//		{
+//			timeLimit = int.Parse(temp[0]);
+//		}
+//
+//		int minutes = (int) (timeLimit / 60);
+//		int seconds = (int) (timeLimit % 60);
+//		labelOfTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+//	}
 
-    /// <summary>
-    /// Start running the set timer.
-    /// </summary>
-    public void StartTimer()
-    {
-        StopCoroutine("RunTimer");
+	public void SetTime(float time)
+	{
+		timeLimit = time;
+		int minutes = (int) (timeLimit / 60);
+		int seconds = (int) (timeLimit % 60);
+		labelOfTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+	}
 
-        _StartTime = Time.time;
-        LabelOfTimer.color = _ColourStart;
-        StartCoroutine("RunTimer");
-    }
+	IEnumerator RunTimer()
+	{
+		RemainingTime = timeLimit;
+		while (RemainingTime > 0)
+		{
+			if (!_paused)
+			{
+				RemainingTime -= Time.deltaTime;
+			}
 
-    /// <summary>
-    /// Starts the timer with a custom time.
-    /// </summary>
-    public void StartTimer(float time)
-    {
-        StopCoroutine("RunTimer");
+			if (RemainingTime <= 0)
+			{
+				timerRanOut.Invoke();
+				RemainingTime = 0;
+			}
 
-        TimeLimit = time;
-        _StartTime = Time.time;
-        LabelOfTimer.color = _ColourStart;
-        StartCoroutine("RunTimer");
-    }
+			int minutes = (int) (RemainingTime / 60);
+			int seconds = (int) (RemainingTime % 60);
+			gage.fillAmount = RemainingTime / timeLimit;
 
-    /// <summary>
-    /// Pause or unpause the timer.
-    /// </summary>
-    public void PauseTimer(bool pause)
-    {
-        Paused = pause;
-    }
+			labelOfTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+			if (RemainingTime < (timeLimit / percentageOutOfTime))
+			{
+				float factor = RemainingTime / percentageOutOfTime;
+				labelOfTimer.color = Color.Lerp(colorWhenOutOfTime, _colourStart, factor);
+			}
 
-    private void Awake()
-    {
-        //Check if a Text class has been linked
-        if (LabelOfTimer == null)
-        {
-            LabelOfTimer = gameObject.GetComponent<Text>(); //Try to find a Text class
-            if (LabelOfTimer == null)
-            {
-                Debug.LogWarning("L_Text | Start | Text changer has no label to change and can't find one on its gameobject: " + gameObject.name);
-                return;
-            }
-            else
-            {
-                Debug.LogWarning("L_Text | Start | Text changer has no label to change but it has found a Text class on its gameobject: " + gameObject.name);
-            }
-        }
-
-        _ColourStart = LabelOfTimer.color;
-
-        //load time setting from settings file; if there is no time setting in the file, the inspector value is used instead.
-        string[] setting = GlobalGameSettings.GetSetting("Playtime").Split(' ');
-        if (setting.Length > 0)
-        {
-            TimeLimit = int.Parse(setting[0]);
-        }
-
-        int minutes = (int)(TimeLimit / 60);
-        int seconds = (int)(TimeLimit % 60);
-        LabelOfTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
-    }
-
-    /// <summary>
-    /// Initializes relevant audiosources.
-    /// </summary>
-    private void Start()
-    {
-        AudioSource[] _audioSources = GetComponents<AudioSource>();
-        _AlmostFinishedAudio = _audioSources[0];
-        _FinishedAudio = _audioSources[1];
-    }
-
-    IEnumerator RunTimer()
-    {
-        TimeRemaining = TimeLimit;
-        float redFade = 0;
-        bool finale = false;
-
-        while (TimeRemaining > 0)
-        {
-            if (!Paused)
-            {
-                int minutes = (int)(TimeRemaining / 60);
-                int seconds = (int)(TimeRemaining % 60);
-                Gage.fillAmount = TimeRemaining / TimeLimit;
-                LabelOfTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
-
-                if (TimeRemaining < AlmostFinishedTime)
-                {
-                    redFade += Time.deltaTime / AlmostFinishedTime;
-                    LabelOfTimer.color = Color.Lerp(_ColourStart, AlmostFinishedColor, redFade);
-
-                    if (!finale)
-                    {
-                        _AlmostFinishedAudio.Play();
-                        finale = true;
-                    }
-                }
-
-                TimeRemaining -= Time.deltaTime;
-            }
-
-            yield return null;          
-        }
-
-        TimeRemaining = 0;
-        Color c = _FinishedFade.color;
-        c.a = 0.5f;
-        _FinishedFade.color = c;
-        _FinishedAudio.Play();
-        yield return new WaitForSeconds(0.5f);
-        //make sure the player isn't able to hit stuff anymore
-        BlobInputProcessing.SetState(false);
-        yield return new WaitForSeconds(1.5f);
-        TimerRanOut.Invoke();
-    }
+			yield return null;
+		}
+	}
 }
