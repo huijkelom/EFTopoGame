@@ -20,11 +20,6 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	private Color startColor = default;
 	private Color _targetColor;
 
-	[SerializeField]
-	private AudioClip goodSound = default;
-	[SerializeField]
-	private AudioClip wrongSound = default;
-
 	[Header("References")]
 	[SerializeField]
 	private RectTransform startTransform = default;
@@ -86,17 +81,13 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
             if (!_hit && ready)
             {
                 _hit = true;
-                _audioSource.PlayOneShot(goodSound);
+                AudioManager.Instance.Play("Correct");
                 topoGame.previousAreas.Add(this);
                 if (topoGame.previousAreas.Count > 1)
                     topoGame.previousAreas[topoGame.previousAreas.Count - 2].Leave();
 
                 if (_runningCoroutine != null) StopCoroutine(_runningCoroutine);
                 StartCoroutine(AnimatedMove(0.5f));
-            }
-            else
-            {
-                topoGame.WrongAnswerHit(hitPosition);
             }
         }
 	}
@@ -118,7 +109,6 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 	public void Shake()
 	{
 		if (_hit || _runningCoroutine != null) return;
-		_audioSource.PlayOneShot(wrongSound);
 		_runningCoroutine = StartCoroutine(TextShake(.5f));
 	}
 

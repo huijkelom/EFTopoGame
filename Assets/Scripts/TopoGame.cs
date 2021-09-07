@@ -17,9 +17,6 @@ public class TopoGame : MonoBehaviour
 	[SerializeField]
 	private TextMeshPro scoreText = default;
 
-	[SerializeField]
-	private HitMarker hitMarker = default;
-
 	public List<Area> previousAreas = default;
 
 	public Area currentTarget { get; private set; }
@@ -42,7 +39,6 @@ public class TopoGame : MonoBehaviour
         if (Playing == true)
         {
             currentTarget.Shake();
-            hitMarker.Move(position);
         }
 	}
 

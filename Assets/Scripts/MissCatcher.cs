@@ -5,5 +5,8 @@ public class MissCatcher : MonoBehaviour, I_SmartwallInteractable
 	[SerializeField]
 	private TopoGame topoGame;
 
-	public void Hit(Vector3 hitPosition) => topoGame.WrongAnswerHit(hitPosition);
+    public void Hit(Vector3 hitPosition)
+    {
+
+    }
 }
