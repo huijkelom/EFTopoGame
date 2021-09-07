@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -121,6 +121,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &490790297
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4989836045423086356, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: Music.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086356, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: Dialogue.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086357, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989836045423086359, guid: 776fc9e671bb2504abca7ee04e2417bd,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 776fc9e671bb2504abca7ee04e2417bd, type: 3}
 --- !u!1 &589363908
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,8 +260,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: HighscoreColour.r
-      value: 0.8584906
+      propertyPath: HighscoreColour.b
+      value: 0.13363297
       objectReference: {fileID: 0}
     - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -191,13 +270,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1292733122895889457, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: HighscoreColour.b
-      value: 0.13363297
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.size
-      value: 3
+      propertyPath: HighscoreColour.r
+      value: 0.8584906
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -206,68 +280,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[2]
-      value: WRLD
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[2].Label
-      value: Reset HS
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[2].Value
-      value: No
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[0]
-      value: Yes
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[1]
-      value: No
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[2].Default
-      value: No
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].Value
-      value: WRLD
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].Default
-      value: NL
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
       propertyPath: SettingToMake.Array.data[0].Label
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[0]
-      value: NL
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[1]
-      value: EU
+      propertyPath: SettingToMake.Array.data[0].Value
+      value: WRLD
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -281,6 +300,61 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
+      propertyPath: SettingToMake.Array.data[2].Label
+      value: Reset HS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].Value
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].Default
+      value: NL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].Default
+      value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].Default
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[0]
+      value: NL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[1]
+      value: EU
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[0].PossibleValues.Array.data[2]
+      value: WRLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
       propertyPath: SettingToMake.Array.data[1].PossibleValues.Array.data[0]
       value: Yes
       objectReference: {fileID: 0}
@@ -291,8 +365,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
-      propertyPath: SettingToMake.Array.data[1].Default
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[0]
       value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487633214657388522, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: SettingToMake.Array.data[2].PossibleValues.Array.data[1]
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
@@ -311,6 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -322,16 +411,6 @@ PrefabInstance:
     - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7580370671467913558, guid: d21d40e053a0ceb499904da364436a28,

@@ -29,6 +29,7 @@ public class ScoreScreenController : MonoBehaviour
 
     public static int IndexOfSceneToMoveTo = 1;
     private static int _LevelIndex = 0;
+    private static bool _Are0ScoresIgnored = true;
     [HideInInspector]
     public float BarRiseAnimationTime = 0.7f;
     public GameObject P_Scoring;
@@ -41,7 +42,7 @@ public class ScoreScreenController : MonoBehaviour
     /// parameter is for determining what scen to move to after the scores have been shown.
     /// </summary>
     /// <param name="sceneIndex">Scene to move to from score scene, defaults to one.</param>
-    public static void MoveToScores(List<int> scores, int levelIndex = 1, int sceneIndex = 1)
+    public static void MoveToScores(List<int> scores,int levelIndex = 1, int sceneIndex = 1, bool ignore0Scores = true)
     {
         if (scores == null)
         {
@@ -54,6 +55,7 @@ public class ScoreScreenController : MonoBehaviour
         IndexOfSceneToMoveTo = sceneIndex;
         Scores = scores;
         _LevelIndex = levelIndex;
+        _Are0ScoresIgnored = ignore0Scores;
         SceneManager.LoadScene("Scores");
     }
 
@@ -63,11 +65,11 @@ public class ScoreScreenController : MonoBehaviour
         BlobInputProcessing.SetState(true);
 
         //load highscore from file
-        if (GlobalGameSettings.GetSetting("Reset Highscore").Equals("No"))
+        if(GlobalGameSettings.GetSetting("Reset Highscore").Equals("No"))
         {
             LoadHighscore();
         }
-        else if (GlobalGameSettings.GetSetting("Reset Highscore").Equals(string.Empty))
+        else if(GlobalGameSettings.GetSetting("Reset Highscore").Equals(string.Empty))
         {
             if (GlobalGameSettings.GetSetting("Reset HS").Equals("No"))
             {
@@ -76,9 +78,9 @@ public class ScoreScreenController : MonoBehaviour
         }
 
         //check if we have all requirements linked
-        if (ScoreBarBase == null) { Debug.LogError("ScoreScreenController | Start | Missing base object for score bars."); }
-        if (P_Scoring == null) { Debug.LogError("ScoreScreenController | Start | Missing Link to perant panel."); }
-        if (ReplayButton == null) { Debug.LogError("ScoreScreenController | Start | Missing Link to replay button."); }
+        if(ScoreBarBase == null) { Debug.LogError("ScoreScreenController | Start | Missing base object for score bars."); }
+        if(P_Scoring == null) { Debug.LogError("ScoreScreenController | Start | Missing Link to perant panel."); }
+        if(ReplayButton == null) { Debug.LogError("ScoreScreenController | Start | Missing Link to replay button."); }
 
         if (Scores == null)
         {
@@ -90,13 +92,13 @@ public class ScoreScreenController : MonoBehaviour
             int highestScore = 0;
             foreach (int score in Scores)
             {
-                if (score == 0) { numberOf0Scores++; }
+                if (score == 0 && _Are0ScoresIgnored) { numberOf0Scores++; }
                 if (score > highestScore) { highestScore = score; }
             }
             //safety check, if we add a level it wount be in the highscore script
-            if (_Highscore.Highscores.Count < _LevelIndex)
+            if (_Highscore.Highscores.Count - 1 < _LevelIndex)
             {
-                int count = (_LevelIndex + 1) - _Highscore.Highscores.Count;
+                int count = _LevelIndex + 1 - _Highscore.Highscores.Count;
                 for (int index = 0; index < count; index++)
                 {
                     _Highscore.Highscores.Add(0);
@@ -107,7 +109,7 @@ public class ScoreScreenController : MonoBehaviour
                 Debug.LogError("ScoreScreenController | Start | No scores have been stored in the static Scores list!");
                 return;
             }
-            else if (Scores.Count - numberOf0Scores == 1)
+            else if(Scores.Count - numberOf0Scores == 1)
             {
                 SetupSinglePlayer(Scores.IndexOf(highestScore));
             }
@@ -115,7 +117,7 @@ public class ScoreScreenController : MonoBehaviour
             {
                 SetupMultiPlayer(highestScore);
             }
-            if (highestScore > _Highscore.Highscores[_LevelIndex])
+            if(highestScore > _Highscore.Highscores[_LevelIndex])
             {
                 _Highscore.Highscores[_LevelIndex] = highestScore;
                 SaveHighscore();
@@ -127,7 +129,7 @@ public class ScoreScreenController : MonoBehaviour
     private void SetupSinglePlayer(int playerNr)
     {
         int highestScore;
-        if (Scores[playerNr] > _Highscore.Highscores[_LevelIndex])
+        if(Scores[playerNr] > _Highscore.Highscores[_LevelIndex])
         {
             highestScore = Scores[playerNr];
         }
@@ -136,7 +138,7 @@ public class ScoreScreenController : MonoBehaviour
             highestScore = _Highscore.Highscores[_LevelIndex];
         }
         ScoreBar temp = Instantiate(ScoreBarBase, P_Scoring.transform).GetComponent<ScoreBar>();
-        temp.SetNewBarColour(PlayerColourContainer.GetPlayerColour(playerNr + 1));
+        temp.SetNewBarColour(PlayerColourContainer.GetPlayerColour(playerNr+1));
         temp.Begin(Scores[playerNr], (float)Scores[playerNr] / (float)highestScore, BarRiseAnimationTime, Scores[playerNr] > _Highscore.Highscores[_LevelIndex], Scores[playerNr] > _Highscore.Highscores[_LevelIndex], 0.1f);
 
         temp = Instantiate(ScoreBarBase, P_Scoring.transform).GetComponent<ScoreBar>();
@@ -146,26 +148,26 @@ public class ScoreScreenController : MonoBehaviour
 
     private void SetupMultiPlayer(int highestScore)
     {
-        for (int i = 0; i < Scores.Count; i++)
+        for(int i = 0; i < Scores.Count; i++)
         {
-            if (Scores[i] > 0)
-            {
+            if (Scores[i] == 0 && _Are0ScoresIgnored)
+            { continue; }
                 ScoreBar temp = Instantiate(ScoreBarBase, P_Scoring.transform).GetComponent<ScoreBar>();
-                temp.SetNewBarColour(PlayerColourContainer.GetPlayerColour(i + 1));
+                temp.SetNewBarColour(PlayerColourContainer.GetPlayerColour(i+1));
                 temp.Begin(Scores[i], (float)Scores[i] / (float)highestScore, BarRiseAnimationTime, Scores[i] > _Highscore.Highscores[_LevelIndex] && Scores[i] == highestScore, Scores[i] == highestScore, 0.1f);
-            }
+            
         }
     }
 
     private void SaveHighscore()
     {
-        XML_to_Class.SaveClassToXML(_Highscore, "StreamingAssets" + Path.DirectorySeparatorChar + "HighScore");
+            XML_to_Class.SaveClassToXML(_Highscore, "StreamingAssets" + Path.DirectorySeparatorChar + "HighScore");
     }
 
     private void LoadHighscore()
     {
-        HighscoreContainer temp = XML_to_Class.LoadClassFromXML<HighscoreContainer>("StreamingAssets" + Path.DirectorySeparatorChar + "HighScore");
-        if (temp == null)
+        HighscoreContainer temp = XML_to_Class.LoadClassFromXML<HighscoreContainer>("StreamingAssets"+ Path.DirectorySeparatorChar +"HighScore");
+        if(temp == null)
         {
             _Highscore = new HighscoreContainer(new List<int>());
         }

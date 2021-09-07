@@ -26,12 +26,13 @@ public class ScoreBar : MonoBehaviour
     {
         Begin(score, barFillPerc, timeToRaiseAllInSeconds, hasHighscore, isWinner, 0f);
     }
+
     public void Begin(int score, float barFillPerc, float timeToRaiseAllInSeconds, bool hasHighscore, bool isWinner, float delay)
     {
         _IsWinner = isWinner;
         _HasHighscore = hasHighscore;
         _Score = score;
-        _BarFillPerc = barFillPerc;
+        _BarFillPerc = (barFillPerc*0.85f)+0.15f;
         _TimeToRaise = timeToRaiseAllInSeconds;
         if (delay == 0)
         {
@@ -42,10 +43,11 @@ public class ScoreBar : MonoBehaviour
             Invoke("RaiseBar", delay);
         }
     }
+
     private void RaiseBar()
     {
         _Started = true;
-        ScoreSoundsManager.PlayScoreSound();
+        AudioManager.Instance.Play("ScoreGrow");
     }
 
     // Update is called once per frame
@@ -71,7 +73,7 @@ public class ScoreBar : MonoBehaviour
         if (_IsWinner)
         {
             Crown.SetActive(true);
-            ScoreSoundsManager.PlayWinSound();
+            AudioManager.Instance.Play("ScoreWin");
         }
         if (_HasHighscore)
         {

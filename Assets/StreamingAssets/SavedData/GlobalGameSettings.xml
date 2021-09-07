@@ -2,7 +2,7 @@
 <ArrayOfGlobalGameSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <GlobalGameSetting>
     <Label>Map</Label>
-    <Value>WRLD</Value>
+    <Value>EU</Value>
     <PossibleValues>
       <string>NL</string>
       <string>EU</string>
