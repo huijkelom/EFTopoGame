@@ -8613,7 +8613,7 @@ PrefabInstance:
     - target: {fileID: 2170581707095033986, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
       propertyPath: m_Name
-      value: Engeland
+      value: Verenigd Koninkrijk
       objectReference: {fileID: 0}
     - target: {fileID: 2170581707095033987, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
@@ -23088,7 +23088,7 @@ PrefabInstance:
     - target: {fileID: 2170581707095033986, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
       propertyPath: m_Name
-      value: Wit-Rusland
+      value: Belarus
       objectReference: {fileID: 0}
     - target: {fileID: 2170581707095033987, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
