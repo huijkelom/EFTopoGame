@@ -55,7 +55,7 @@ public class TopoGame : MonoBehaviour
 		{
 			timer.StartTimer(15);
 
-			Area area = availableAreas[Random.Range(0, availableAreas.Count - 1)];
+			Area area = availableAreas[Random.Range(0, availableAreas.Count)];
 			area.Activate();
 			currentTarget = area;
 		}
