@@ -597,7 +597,8 @@ PlayerSettings:
   ps5SharedBinaryContentLabels: []
   ps5SharedBinarySystemFolders: []
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 0}
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 314111208fd89ce4787088a94f9de13b,
+    type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
