@@ -30,6 +30,8 @@ public class TopoGame : MonoBehaviour
 
 	public void StartGame()
 	{
+        AudioManager.Instance.Play("Music", 1f);
+
 		NextArea();
         Playing = true;
 	}
@@ -68,6 +70,7 @@ public class TopoGame : MonoBehaviour
 
     private void MoveToScores()
     {
+        AudioManager.Instance.FadeOut("Music", 1.5f);
         ScoreScreenController.MoveToScores(new List<int> { score }, SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().buildIndex);
     }
 }
