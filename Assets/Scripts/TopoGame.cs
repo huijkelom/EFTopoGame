@@ -46,7 +46,7 @@ public class TopoGame : MonoBehaviour
 	{
 		score += (int) timer.TimeRemaining;
 		if (currentTarget) currentTarget.AppendText($"+{(int)timer.TimeRemaining}");
-		scoreText.text = $"{score.ToString()} Pts.";
+		scoreText.text = $"Score: {score.ToString()}";
 
 		List<Area> availableAreas = areas.Where(x => !x.HitCollider.enabled).ToList();
 		if (availableAreas.Count > 0)

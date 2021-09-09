@@ -9,9 +9,9 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	private Vector3 _targetPosition;
 	private Quaternion _targetRotation;
-	private Vector3 _targetScale;
+	//private Vector3 _targetScale;
 
-	private Vector2 _targetSize;
+	//private Vector2 _targetSize;
 
 	public Collider2D HitCollider { get; private set; }
 
@@ -57,15 +57,14 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		// save target values
 		_targetPosition = _textRectTransform.position;
 		_targetRotation = _textRectTransform.rotation;
-		_targetScale = _textRectTransform.localScale;
-		_targetSize = _textRectTransform.sizeDelta;
+		//_targetScale = _textRectTransform.localScale;
+		//_targetSize = _textRectTransform.sizeDelta;
 		_targetColor = _spriteRenderer.color;
 
 		// set start values
 		_text.transform.position = startTransform.position;
 		_text.transform.rotation = Quaternion.identity;
 		_text.transform.localScale = Vector3.one;
-		_text.color = startColor;
 		_textRectTransform.sizeDelta = startTransform.sizeDelta;
 		_spriteRenderer.color = startColor;
 
@@ -126,8 +125,8 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 			float progress = elapsedTime / duration;
 			_textRectTransform.position = Vector3.Lerp(startPos, _targetPosition, progress);
 			_textRectTransform.rotation = Quaternion.Lerp(startRot, _targetRotation, progress);
-			_textRectTransform.localScale = Vector3.Lerp(startScale, _targetScale, progress);
-			_textRectTransform.sizeDelta = Vector2.Lerp(startSize, _targetSize, progress);
+			//_textRectTransform.localScale = Vector3.Lerp(startScale, _targetScale, progress);
+			//_textRectTransform.sizeDelta = Vector2.Lerp(startSize, _targetSize, progress);
 			_spriteRenderer.color = Color.Lerp(startColor, _targetColor, progress);
 
 			elapsedTime += Time.deltaTime;
@@ -137,8 +136,8 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 		// Ensure final values
 		_textRectTransform.position = _targetPosition;
 		_textRectTransform.rotation = _targetRotation;
-		_textRectTransform.localScale = _targetScale;
-		_textRectTransform.sizeDelta = _targetSize;
+		//_textRectTransform.localScale = _targetScale;
+		//_textRectTransform.sizeDelta = _targetSize;
 		_spriteRenderer.color = _targetColor;
 
 		_runningCoroutine = null;
@@ -176,6 +175,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 	public void AppendText(string text)
 	{
+        _text.text = $"\n{_text.text}";
 		_text.text += $"\n{text}";
 	}
 
@@ -217,7 +217,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 			progress = elapsedTime / duration;
 
 			_textRectTransform.position = Vector3.Lerp(startPos, endPos, progress);
-			_text.color = Color.Lerp(new Color(0, 0, 0, 0), color, progress);
+			//_text.color = Color.Lerp(new Color(0, 0, 0, 0), color, progress);
 
 			elapsedTime += Time.deltaTime;
 			yield return null;
@@ -225,7 +225,7 @@ public class Area : MonoBehaviour, I_SmartwallInteractable
 
 		// Ensure final values
 		_textRectTransform.position = endPos;
-		_text.color = startColor;
+		//_text.color = startColor;
 
 		_runningCoroutine = null;
 		ready = true;
