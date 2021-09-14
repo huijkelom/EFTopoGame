@@ -53,7 +53,8 @@ public class AudioManager : MonoBehaviour
     #region Private
     private bool Playing = false;
 
-    int serialNumber = 0;
+    private int serialNumber = 0;
+    private Dictionary<string, Sound> Dictionary = new Dictionary<string, Sound>();
 
     private GameObject SoundContainer;
     private GameObject MusicContainer;
@@ -150,6 +151,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void InitializeSound(GameObject container, Sound sound, SoundType type, float typeVolume)
     {
+        Dictionary.Add(sound.Name, sound);
+
         sound.Type = type;
         sound.Source = container.AddComponent<AudioSource>();
 
@@ -181,32 +184,15 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private Sound GetSound(string name)
     {
-        // Loop through all 3 Sound categories
-        foreach (Sound sound in Music)
+        foreach (KeyValuePair<string, Sound> pair in Dictionary)
         {
-            if (sound.Name == name)
+            if (pair.Key == name)
             {
-                return sound;
+                return pair.Value;
             }
         }
 
-        foreach (Sound sound in Sounds)
-        {
-            if (sound.Name == name)
-            {
-                return sound;
-            }
-        }
-
-        foreach (Sound sound in Dialogue)
-        {
-            if (sound.Name == name)
-            {
-                return sound;
-            }
-        }
-
-        throw new System.Exception("Sound '" + name + "' not found. Did you spell it right?");
+        throw new Exception("Sound '" + name + "' not found. Did you spell it right?");
     }
 
     /// <summary>
@@ -282,6 +268,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void DestroySound(string name)
     {
+        Dictionary.Remove(name);
+
         Sound sound = GetSound(name);
         Destroy(sound.Source);
 
@@ -495,7 +483,7 @@ public class AudioManager : MonoBehaviour
     {
         float typeVolume = GetVolumeDial(sound.Type);     
         float start =  MasterVolume * typeVolume * sound.MaxVolume * from;
-        float end = MasterVolume * typeVolume * sound.MaxVolume* to;
+        float end = MasterVolume * typeVolume * sound.MaxVolume * to;
 
         float progress = 0;
         while (progress <= 1)
@@ -513,7 +501,7 @@ public class AudioManager : MonoBehaviour
         if (end == 0)
         {
             sound.Source.Stop();
-            sound.SetVolume(1);
+            sound.SetVolume(MasterVolume * typeVolume * sound.MaxVolume * 1);
         }
         else
         {

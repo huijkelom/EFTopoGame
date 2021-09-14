@@ -1582,7 +1582,7 @@ PrefabInstance:
     - target: {fileID: 2170581707095033986, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2170581707095033987, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
@@ -1599,6 +1599,51 @@ PrefabInstance:
       propertyPath: startTransform
       value: 
       objectReference: {fileID: 1601116604}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_text
+      value: Belarus
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -1.2079883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -1.4898025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_margin.y
+      value: -1.2272477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -1.4962587
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_renderer
+      value: 
+      objectReference: {fileID: 1640840130}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7553250518349559952, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -25287,6 +25332,7 @@ Transform:
   m_LocalScale: {x: 0.5675, y: 0.5675, z: 1}
   m_Children:
   - {fileID: 820504054}
+  - {fileID: 1412886323}
   - {fileID: 62432950}
   - {fileID: 1107295897}
   - {fileID: 381625305}
@@ -25306,7 +25352,6 @@ Transform:
   - {fileID: 946442670}
   - {fileID: 1860289291}
   - {fileID: 1265814400}
-  - {fileID: 1412886323}
   - {fileID: 42094250}
   - {fileID: 941375799}
   - {fileID: 459696503}
@@ -26074,7 +26119,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1393674052}
-  m_RootOrder: 20
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1412886324
 SpriteRenderer:
@@ -30146,8 +30191,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605454689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0001, y: 1.0148, z: -3.210653}
-  m_LocalScale: {x: 0.83373415, y: 0.83290654, z: 1}
+  m_LocalPosition: {x: 0.0005, y: 0.99986, z: -3.210653}
+  m_LocalScale: {x: 0.83378464, y: 0.83404607, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -30355,6 +30400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeMax
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470133509459431151, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7553250518349559952, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
         type: 3}
@@ -30669,6 +30719,12 @@ CircleCollider2D:
   m_Offset: {x: -2.05, y: -1.53}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!23 &1640840130 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8414844827932418859, guid: 50e2e1550c7dbdc42a7a6bba39530d7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640840125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1657055635
 PrefabInstance:
   m_ObjectHideFlags: 0
