@@ -21192,6 +21192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 2069719210783572564, guid: 08ef5cc2b186a684e85b80d6446ecbf7,
+        type: 3}
+      propertyPath: AlmostFinishedTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2069719210783572565, guid: 08ef5cc2b186a684e85b80d6446ecbf7,
         type: 3}
       propertyPath: m_Pivot.x
